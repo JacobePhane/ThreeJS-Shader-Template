@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family:  Calibri;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #FFF;
+    background-color: #000;
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+header {
+    text-align: center;
+}
+
+nav ul{
+    list-style-type: none;
+    overflow: hidden;
+}
+
+#socials ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+
+nav ul li, #socials ul li {
+    text-decoration: none;
+}
+
+main{
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+article{
+    flex: 1;
+    order: 1;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

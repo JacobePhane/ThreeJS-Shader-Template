@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Scene with Fragment Shader</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Initialize Three.js scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+		ASPECT = window.innerWidth/window.innerHeight;
+        // Create a plane geometry
+        const geometry = new THREE.PlaneGeometry(2*ASPECT, 2);
+
+        // Create a shader material
+        const material = new THREE.ShaderMaterial({
+            uniforms: {},
+            vertexShader: `
+                void main() {
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader:
+
+				`
+                void main() {
+                    gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0); // Red color
+                }
+            `
+        });
+
+        // Create a mesh with the geometry and material
+        const plane = new THREE.Mesh(geometry, material);
+        scene.add(plane);
+
+        // Position the camera
+        camera.position.z = 1.3;
+
+        // Render the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
